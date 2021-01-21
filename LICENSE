@@ -1,6 +1,19 @@
-MIT License
+```<\!-- include content/header.md -->```
 
-Copyright (c) 2021 keithboice
+<details>
+<summary>Output :</summary>
+
+<pre>
+<!-- include content/header.md -->
+</pre>
+
+</details>
+
+---
+
+# License
+
+MIT License
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

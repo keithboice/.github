@@ -1,0 +1,52 @@
+{
+  "author": "Keith Boice <keith.boice.work@gmail.com>",
+  "bugs": {
+	"url": "${{ env.REPOSITORY_GITHUB_URL }}#/issues"
+  },
+  "dependencies": {},
+  "description": "${{ env.REPOSITORY_DESCRIPTION }}",
+  "devDependencies": {
+	```<\!-- include content/dependencies.md -->```
+  },
+  "eslintConfig": {
+	"extends": [
+	  "plugin:flowtype/recommended",
+	  "prettier",
+	  "prettier/babel",
+	  "prettier/flowtype",
+	  "prettier/prettier"
+	],
+	"plugins": [
+	  "@babel",
+	  "flowtype"
+	],
+	"env": {
+	  "node": true,
+	  "mocha": true
+	}
+  },
+  "homepage": "${{ env.REPOSITORY_README_URL }}",
+  "husky": {
+	"hooks": {
+	  "pre-commit": "lint-staged"
+	}
+  },
+  "keywords": [],
+  "license": "${{ env.REPOSITORY_LICENSE_SPDX_ID }}",
+  "lint-staged": {
+	"*.{js,jsx}": "run-s lint clean flow:check flow:coverage build build:node test",
+	"*.{css,html,md}": "run-p clean",
+	"*.{png,jpeg,jpg,gif,svg}": "run-p img"
+  },
+  "main": "lib/index.js",
+  "name": "${{ env.REPOSITORY_NAME }}",
+  "prettier": "package_config_prettier",
+  "repository": {
+	"type": "git",
+	"url": "${{ env.REPOSITORY_SSH_URL }}"
+  },
+  "scripts": {
+	```<\!-- include content/scripts.md -->```
+  },
+  "version": "${{ env.RELEASE_VERSION }}"
+}
