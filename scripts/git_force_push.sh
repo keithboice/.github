@@ -1,31 +1,33 @@
 #!/bin/bash
 
+
+##### Functions
+
+# Git commit/push for each module/submodule
+commitPush () {
+   echo ".... repo: $1 ....";
+		cd "$2" || exit && echo ".... in root dir ....";
+		git rm -r --cached . && git add . && git commit -am "feat(xxx): added x y z"
+		git push -f origin main || echo ".... skipping ...." && echo ".... pushed files ....";
+}
+
+
 ##### Main
 
 clear
 
 echo "##### starting #####";
-echo ".... .github repo ....";
-cd ".conf" || exit && echo ".... in root dir ....";
-git add . || exit && echo ".... added files ....";
-git commit -m "updated" || echo ".... skipping ...." && echo ".... committed files ....";
-git push -f origin main || echo ".... skipping ...." && echo ".... pushed files ....";
+
+# .github submodule
+commitPush ".github" "./.conf" && echo "finished with the .github repo";
+
+# core repo
+commitPush "core" "../" && echo "finished with the core repo";
 
 
-echo " ";
-echo ".... core repo ....";
-cd "../" || exit && echo ".... in root dir ....";
-git add . || exit && echo ".... added files ....";
-git commit -m "updated" || echo ".... skipping ...." && echo ".... committed files ....";
-git push -f origin main || echo ".... skipping ...." && echo ".... pushed files ....";
+# backend submodule
+commitPush "backend" "./backend" && echo "finished with the backend repo";
 
-
-echo " ";
-echo ".... backend repo ....";
-cd "backend" || exit && echo ".... in root dir ....";
-git add . || exit && echo ".... added files ....";
-git commit -m "updated" || echo ".... skipping ...." && echo ".... committed files ....";
-git push -f origin main || echo ".... skipping ...." && echo ".... pushed files ....";
 
 
 echo "";
