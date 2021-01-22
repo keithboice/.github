@@ -1,0 +1,4 @@
+silent: true
+branchName: 'auto-action-${issue.number}'
+autoCloseIssue: true
+openPR: true
