@@ -1,18 +1,5 @@
 
-```<\!-- include content/header.md -->```
-
-<details> 
-<summary>Output :</summary>
-
-<pre>
-<!-- include content/header.md -->
-</pre>
-
-</details>
-
----
-
-# Contributor Covenant Code of Conduct
+# ${{ env.REPOSITORY_SLUG }} Contributor Covenant Code of Conduct
 
 ## Our Pledge
 
