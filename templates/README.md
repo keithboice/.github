@@ -56,7 +56,7 @@ The source code repository for ${{ env.REPOSITORY_NAME }}.  ${{ env.REPOSITORY_D
 
 ### Cloud
 
-[![Cloud](https://keithboice.github.io/.github/template_nodejs_cloud.svg)](https://app.diagrams.net/?mode=github#Hkeithboice%2F.github%2Fgh-pages%2Fdocs%2Ftemplate_nodejs_cloud.svg)
+[![Cloud](https://raw.githubusercontent.com/keithboice/core/965f3fd42f37509d4787c1543518bcfa47994e71/docs/template_nodejs_cloud.svg)](https://raw.githubusercontent.com/keithboice/core/965f3fd42f37509d4787c1543518bcfa47994e71/docs/template_nodejs_cloud.svg)
 
 
 
