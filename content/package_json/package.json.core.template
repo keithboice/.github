@@ -38,13 +38,13 @@
   "homepage": "${{env.REPOSITORY_README_URL}}",
   "husky": {
 	"hooks": {
-	  "pre-commit": "test"
+	  "pre-commit": "npm run clean:prettier"
 	}
   },
   "license": "${{env.REPOSITORY_LICENSE}}",
   "main": "index.js",
   "man" : [ "./docs/frontend", "./docs/backend" ],
-  "name": "${{env.REPOSITORY_NAME}}",
+  "name": "${{env.REPOSITORY_SLUG}}",
   "nodemonConfig": {
 	"ignore": [
 	  ".config/",
