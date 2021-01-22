@@ -1,30 +1,28 @@
 name: Generate Documentation
 
 on:
-  push:
-    branches: [ main ]
+    push:
+        branches: [main]
 
-  workflow_dispatch:
+    workflow_dispatch:
 
 jobs:
+    jsdocs:
+        runs-on: ubuntu-latest
 
-  jsdocs:
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
 
-    runs-on: ubuntu-latest
+            - name: Install
+              run: |
+                  npm install
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+            - name: Generate
+              run: |
+                  npm run docs
 
-      - name: Install
-        run: |
-          npm install
-
-      - name: Generate
-        run: |
-          npm run docs
-
-      - name: Publish
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          publish_dir: ./docs
+            - name: Publish
+              uses: peaceiris/actions-gh-pages@v3
+              with:
+                  publish_dir: ./docs

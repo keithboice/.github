@@ -1,8 +1,8 @@
 ---
 name: Feature request
 about: Suggest an idea for this project
-title: "[FTR] title"
-labels: "type: feature"
+title: '[FTR] title'
+labels: 'type: feature'
 assignees: keithboice
 ---
 

@@ -1,4 +1,3 @@
-
 ## Operations
 
 | Name            | Type            | Use Case           | Request            | Response            | Scope            |

@@ -1,48 +1,46 @@
 name: CI
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
 
 jobs:
+    test:
+        name: Test Suite
+        runs-on: ubuntu-latest
 
-  test:
+        strategy:
+            matrix:
+                node-version: [15.x]
+                language: ['javascript']
 
-    name: Test Suite
-    runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
 
-    strategy:
-      matrix:
-        node-version: [15.x]
-        language: [ 'javascript' ]
+            - name: Nodejs ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+              env:
+                  CODECOV_TOKEN: 'ec7ed574-b123-4346-832b-366162af1609'
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+            - name: Build
+              run: |
+                  npm install
+                  npm run build
 
-      - name: Nodejs ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-        env:
-          CODECOV_TOKEN: "ec7ed574-b123-4346-832b-366162af1609"
+            - name: Test
+              run: |
+                  npm test
+                  bash <(curl -s https://codecov.io/bash)
 
-      - name: Build
-        run: |
-          npm install
-          npm run build
+            - name: Initialize CodeQL
+              uses: github/codeql-action/init@v1
+              with:
+                  languages: ${{ matrix.language }}
 
-      - name: Test
-        run: |
-          npm test
-          bash <(curl -s https://codecov.io/bash)
-
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v1
-        with:
-          languages: ${{ matrix.language }}
-
-      - name: CodeQL Analysis
-        uses: github/codeql-action/analyze@v1
+            - name: CodeQL Analysis
+              uses: github/codeql-action/analyze@v1
