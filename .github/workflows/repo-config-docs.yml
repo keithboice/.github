@@ -16,9 +16,9 @@ jobs:
             - name: Create Action Branch
               uses: peterjgrainger/action-create-branch@v2.0.1
               env:
-                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
-                branch: 'actions_conf'
+                  branch: 'actions_conf'
 
             - name: Checkout
               uses: actions/checkout@v2

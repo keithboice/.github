@@ -34,9 +34,9 @@ jobs:
 
             - name: Codecov
               env:
-                CODECOV_TOKEN: 'ec7ed574-b123-4346-832b-366162af1609'
+                  CODECOV_TOKEN: 'ec7ed574-b123-4346-832b-366162af1609'
               run: |
-                bash <(curl -s https://codecov.io/bash)
+                  bash <(curl -s https://codecov.io/bash)
 
             - name: Initialize CodeQL
               uses: github/codeql-action/init@v1
