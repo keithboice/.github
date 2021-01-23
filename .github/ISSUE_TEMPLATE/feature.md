@@ -1,9 +1,9 @@
 ---
-name: Feature request
-about: Suggest an idea for this project
+name: Feature
+about: New feature and enhancement stories
 title: '[FTR] title'
-labels: 'type: feature'
-assignees: keithboice
+labels: feature
+assignees: ''
 ---
 
 **Is your feature request related to a problem? Please describe.**

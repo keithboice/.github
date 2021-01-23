@@ -1,25 +1,29 @@
-name: Core Repo Docs
+name: Generate repo config docs
 
 on:
     issues:
-        types: [assigned]
+        types: [labeled]
 
     workflow_dispatch:
 
 jobs:
     Generate:
+        if: contains(github.event.label.name, 'actions' )
+        name: Generate repo docs
         runs-on: ubuntu-latest
 
         steps:
-            - name: Create Issue Branch
-              uses: robvanderleek/create-issue-branch@master
+            - name: Create Action Branch
+              uses: peterjgrainger/action-create-branch@v2.0.1
               env:
-                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              with:
+                branch: 'actions_conf'
 
             - name: Checkout
               uses: actions/checkout@v2
               with:
-                  ref: ${{ steps.Create_Issue_Branch.outputs.branchName }}
+                  ref: 'actions_conf'
                   submodules: 'recursive'
 
             - name: Meta
@@ -31,13 +35,8 @@ jobs:
               uses: varunsridharan/action-dynamic-readme@main
               with:
                   FILES: |
-                      .conf/content/package_json/package.json.core.template=package.json
+                      ./package.json.core.template=package.json
                       .conf/content/ignores/default.gitignore=.gitignore
-                      .conf/content/md/README.md=README.md
-                      .conf/content/md/CODE_OF_CONDUCT.md=CODE_OF_CONDUCT.md
-                      .conf/content/md/CONTRIBUTING.md=CONTRIBUTING.md
-                      .conf/content/md/LICENSE=LICENSE
-                      .conf/content/md/SECURITY.md=SECURITY.md
               env:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -46,11 +45,11 @@ jobs:
                   git config user.name github-actions
                   git config user.email github-actions@github.com
                   git add .
-                  git commit -m "generated"
+                  git commit -m "feat(actions_conf)"
 
             - name: Push
               uses: ad-m/github-push-action@master
               with:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
-                  branch: ${{ steps.Create_Issue_Branch.outputs.branchName }}
+                  branch: 'actions_conf'
                   force: true

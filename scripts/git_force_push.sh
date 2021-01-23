@@ -7,7 +7,7 @@
 commitPush () {
    echo ".... repo: $1 ....";
 		cd "$2" || exit && echo ".... in root dir ....";
-		git rm -r --cached . && git add . && git commit -am "feat(xxx): added x y z"
+		git add . && git commit -am "feat(xxx): added x y z"
 		git push -f origin main || echo ".... skipping ...." && echo ".... pushed files ....";
 }
 

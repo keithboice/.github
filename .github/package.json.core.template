@@ -99,5 +99,5 @@
 	"watch:backend": "nodemon -w backend/lib/",
 	"watch:frontend": "nodemon -w frontend/lib/"
   },
-  "version": "0.0.1"
+  "version": "${{env.RELEASE_VERSION}}"
 }

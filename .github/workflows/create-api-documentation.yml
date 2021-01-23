@@ -1,4 +1,4 @@
-name: API Documentation
+name: Create api documentation
 
 on:
     push:

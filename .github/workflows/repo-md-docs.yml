@@ -1,0 +1,55 @@
+name: Generate repo md docs
+
+on: push
+
+  workflow_dispatch:
+
+jobs:
+  Generate:
+    name: Generate md docs
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create Action Branch
+        uses: peterjgrainger/action-create-branch@v2.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          branch: 'actions_repodocs'
+
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: 'actions_repodocs'
+          submodules: 'recursive'
+
+      - name: Meta
+        uses: varunsridharan/action-repository-meta@main
+        env:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Render
+        uses: varunsridharan/action-dynamic-readme@main
+        with:
+          FILES: |
+            .conf/content/md/README.md=README.md
+            .conf/content/md/CODE_OF_CONDUCT.md=CODE_OF_CONDUCT.md
+            .conf/content/md/CONTRIBUTING.md=CONTRIBUTING.md
+            .conf/content/md/LICENSE=LICENSE
+            .conf/content/md/SECURITY.md=SECURITY.md
+        env:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "feat(actions_repodocs)"
+
+      - name: Push
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: 'actions_repodocs'
+          force: true
