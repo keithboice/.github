@@ -1,0 +1,9 @@
+- name: bug
+  description: Something isn't working
+  color: d73a4a
+- name: feature
+  description: Improvements or additions to documentation
+  color: 0075ca
+- name: tech
+  description: This issue or pull request already exists
+  color: cfd3d7
